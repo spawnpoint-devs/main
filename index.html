@@ -3,27 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111111" />
-    <meta name="description" content="Envix Interactive — Professional Roblox Developers. High-quality systems, UI, and optimized experiences. Join our community or hire us!" />
+    <meta name="theme-color" content="#0B1026" />
+    <meta name="description" content="SpawnPoint Devs — Professional Roblox Developers. High-quality systems, UI, and optimized experiences. Join our community or hire us!" />
     <title>SpawnPoint Devs — Roblox Development Studio</title>
+
     <!-- Favicons -->
-<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- fallback for older browsers -->
-<link rel="icon" href="favicon.svg" type="image/svg+xml"> <!-- modern browsers -->
-<link rel="apple-touch-icon" sizes="180x180" href="favicon.png"> <!-- iOS touch icon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
     <style>
       :root {
-        --bg-950: #111111;
-        --bg-900: #1a1a1a;
-        --surface-800: #1f1f1f;
-        --surface-700: #262626;
-        --text-100: #f5f5f5;
-        --text-300: #c0c0c0;
-        --muted-500: #999999;
-        --accent-start: #ffffff;
-        --accent-end: #aaaaaa;
-        --ring: rgba(255,255,255,0.25);
-        --shadow-strong: 0 20px 40px rgba(0,0,0,0.5);
+        --primary-gradient: linear-gradient(135deg, #6FE7F0, #6B7CFF, #8A5CFF);
+        --inner-ring: #F4F6FF;
+        --controller-dot: #EDEBFF;
+        --bg-950: #0B1026;
+        --bg-900: #11162E;
+        --text-100: #F4F6FF;
+        --text-300: #EDEBFF;
+        --muted-500: #A0A0C0;
+        --shadow-strong: 0 20px 40px rgba(124,92,255,0.15);
         --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
         --radius-xl: 18px;
         --radius-lg: 14px;
@@ -34,7 +33,11 @@
       }
 
       * { box-sizing: border-box; }
-      html, body { height: 100%; margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial; color: var(--text-100); background: linear-gradient(180deg, var(--bg-950), var(--bg-900)); line-height:1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+      html, body { 
+        height: 100%; margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
+        color: var(--text-100); background: linear-gradient(180deg, var(--bg-950), var(--bg-900));
+        line-height:1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      }
 
       body::before {
         content:""; position:fixed; inset:0;
@@ -52,52 +55,48 @@
 
       .brand {
         font-size:clamp(40px,6vw,76px); line-height:1.05; font-weight:800; letter-spacing:-0.02em; margin:0; 
-        background: linear-gradient(90deg, var(--accent-start), var(--accent-end), var(--accent-start)); 
-        background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; color:transparent; 
+        background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; color:transparent; 
         animation: shimmer 7s ease-in-out infinite; text-shadow:0 0 0 rgba(0,0,0,0.2);
       }
 
       .subtitle { margin:4px 0 0 0; font-size:clamp(16px,2.2vw,22px); color:var(--text-300); letter-spacing:0.2px; position:relative; }
       .accent-underline { display:inline-block; position:relative; padding-bottom:2px;}
       .accent-underline::after { content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:3px; 
-        background: linear-gradient(90deg, var(--accent-start), var(--accent-end)); 
-        box-shadow:0 0 22px rgba(255,255,255,0.3),0 0 18px rgba(255,255,255,0.2); 
+        background: var(--primary-gradient); 
+        box-shadow:0 0 22px rgba(111,231,240,0.3),0 0 18px rgba(107,124,255,0.2); 
         animation: underlineGrow var(--transition-slow) 300ms forwards; animation-delay:200ms;
       }
 
       .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:18px; }
       .btn { appearance:none; border:0; border-radius:999px; padding:12px 20px; font-weight:700; font-size:15px; letter-spacing:0.3px; cursor:pointer; transition:transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:10px;}
-      .btn-primary { color:white; background: linear-gradient(135deg, var(--accent-start), var(--accent-end)); box-shadow:0 8px 28px rgba(255,255,255,0.2);}
-      .btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(255,255,255,0.3),0 0 0 6px var(--ring);}
-      .btn-secondary { color:var(--text-100); background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.08); box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(255,255,255,0.06); backdrop-filter: blur(6px);}
-      .btn-secondary:hover { transform:translateY(-2px); border-color: rgba(255,255,255,0.18); box-shadow:0 14px 36px rgba(0,0,0,0.45),0 0 0 6px var(--ring); }
+      .btn-primary { background: var(--primary-gradient); color: var(--text-100); box-shadow:0 8px 28px rgba(111,231,240,0.2);}
+      .btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(124,92,255,0.3),0 0 0 6px rgba(124,92,255,0.1);}
+      .btn-secondary { color: var(--text-100); background: rgba(244,246,255,0.06); border:1px solid rgba(244,246,255,0.1); box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(244,246,255,0.06); backdrop-filter: blur(6px);}
+      .btn-secondary:hover { transform:translateY(-2px); border-color: rgba(244,246,255,0.18); box-shadow:0 14px 36px rgba(0,0,0,0.45),0 0 0 6px rgba(124,92,255,0.1); }
 
       .stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; width:100%; }
-      .stat { background: radial-gradient(120% 140% at 0% 0%, rgba(255,255,255,0.08), transparent 40%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding:20px 18px; box-shadow: var(--shadow-soft); transition:transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);}
-      .stat:hover { transform:translateY(-4px); border-color: rgba(255,255,255,0.16); box-shadow:0 16px 40px rgba(0,0,0,0.5);}
+      .stat { background: linear-gradient(180deg, rgba(111,231,240,0.05), rgba(107,124,255,0.03)); border:1px solid rgba(244,246,255,0.08); border-radius: var(--radius-xl); padding:20px 18px; box-shadow: var(--shadow-soft); transition:transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);}
+      .stat:hover { transform:translateY(-4px); border-color: rgba(244,246,255,0.16); box-shadow:0 16px 40px rgba(0,0,0,0.5);}
       .stat-value { font-size:clamp(24px,4vw,34px); font-weight:800; letter-spacing:-0.02em; }
       .stat-label { color:var(--muted-500); font-size:14px; margin-top:6px; }
 
       section { padding:48px 0 80px; }
-      .section-card { background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding:28px; box-shadow: var(--shadow-soft); }
+      .section-card, .feature, .team-member { 
+        background: linear-gradient(180deg, rgba(111,231,240,0.05), rgba(107,124,255,0.03)); 
+        border:1px solid rgba(244,246,255,0.08); border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); padding:28px;
+      }
       .section-title { font-size:clamp(22px,3vw,28px); margin:0 0 14px 0; font-weight:800; }
       .section-lead { color: var(--text-300); margin:0 0 18px 0; }
-      .features { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:10px;}
-      .feature { border-radius: var(--radius-lg); padding:18px; background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); transition:transform var(--transition-fast), border-color var(--transition-fast);}
-      .feature:hover { transform:translateY(-3px); border-color: rgba(255,255,255,0.16); }
-      .feature h3 { margin:0 0 6px 0; font-size:18px; }
-      .feature p { margin:0; color: var(--muted-500); font-size:14px; }
 
-      /* Team & Projects Section */
-      .team-members { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:14px;}
-      .team-member { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg); padding:16px; text-align:center; transition: transform var(--transition-fast), box-shadow var(--transition-fast);}
-      .team-member:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255,255,255,0.1);}
-      .team-member img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:10px; border:2px solid rgba(255,255,255,0.08);}
+      .features, .team-members { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:10px;}
+      .feature:hover, .team-member:hover { transform:translateY(-3px); border-color: rgba(244,246,255,0.16); }
+
+      .team-member img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:10px; border:2px solid rgba(244,246,255,0.08);}
       .team-member h3 { margin:4px 0 6px 0; font-size:16px; color: var(--text-100);}
-      .team-member a { color: var(--accent-end); text-decoration:none; font-size:14px;}
+      .team-member a { color: var(--primary-gradient); text-decoration:none; font-size:14px;}
       .team-member a:hover { text-decoration: underline;}
 
-      footer { padding:28px 0 54px; color: var(--muted-500); text-align:center; font-size:14px; }
+      footer { padding:28px 0 54px; color: var(--text-300); text-align:center; font-size:14px; }
 
       .reveal { opacity:0; transform:translateY(14px) scale(.98); transition:opacity 700ms ease, transform 700ms ease; }
       .reveal.is-visible { opacity:1; transform:translateY(0) scale(1); }
@@ -109,88 +108,88 @@
       @media(max-width:620px){ .features, .team-members{grid-template-columns:1fr;} .stats{grid-template-columns:1fr;} .hero{padding-top:72px;} }
     </style>
   </head>
+
   <body>
     <header class="hero">
       <div class="container hero-inner">
-        <h1 class="brand">Envix Interactive</h1>
+        <h1 class="brand">SpawnPoint Devs</h1>
         <p class="subtitle"><span class="accent-underline">"Dream. Build. Play"</span></p>
 
         <div class="cta">
-          <a class="btn btn-primary" href="apply.html" target="_blank" style="color: black;">Join Discord</a>
+          <a class="btn btn-primary" href="apply.html" target="_blank">Join Discord</a>
           <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive" target="_blank">View Group</a>
         </div>
 
         <div class="stats">
           <div class="stat reveal"><div class="stat-value">10+</div><div class="stat-label">Projects Completed</div></div>
           <div class="stat reveal"><div class="stat-value">High</div><div class="stat-label">Quality Projects</div></div>
-          <div class="stat reveal"><div class="stat-value">Strong</div><div class="stat-label">Community Focused Collaboration</div></div>
+          <div class="stat reveal"><div class="stat-value">Strong</div><div class="stat-label">Community Collaboration</div></div>
         </div>
       </div>
     </header>
 
     <main>
-<!-- What We Build -->
-<section>
-  <div class="container">
-    <div class="section-card reveal">
-      <h2 class="section-title">What We Build</h2>
-      <p class="section-lead">Envix Interactive is an innovative game studio crafting immersive and engaging experiences. We turn creative ideas into interactive adventures that inspire, entertain, and captivate players worldwide.</p>
-      <div class="features">
-        <div class="feature">
-          <h3>Game Development</h3>
-          <p>Polished, memorable, and fun experiences designed to delight players.</p>
+      <!-- What We Build -->
+      <section>
+        <div class="container">
+          <div class="section-card reveal">
+            <h2 class="section-title">What We Build</h2>
+            <p class="section-lead">SpawnPoint Devs is an innovative Roblox game studio crafting immersive and engaging experiences. We turn creative ideas into interactive adventures that inspire, entertain, and captivate players worldwide.</p>
+            <div class="features">
+              <div class="feature">
+                <h3>Game Development</h3>
+                <p>Polished, memorable, and fun experiences designed to delight players.</p>
+              </div>
+              <div class="feature">
+                <h3>World-Building</h3>
+                <p>Immersive environments that spark imagination and encourage exploration.</p>
+              </div>
+              <div class="feature">
+                <h3>Creative Design</h3>
+                <p>Stunning visuals and intuitive interfaces that enhance gameplay and engagement.</p>
+              </div>
+              <div class="feature">
+                <h3>Innovation & Quality</h3>
+                <p>Bold ideas transformed into unforgettable experiences, emphasizing craftsmanship.</p>
+              </div>
+              <div class="feature">
+                <h3>Player-Focused</h3>
+                <p>Every project is designed with the player in mind, ensuring enjoyable gameplay.</p>
+              </div>
+              <div class="feature">
+                <h3>Dream. Build. Play.</h3>
+                <p>Dream: Creativity first. Build: Ideas become playable worlds. Play: Engaging, rewarding experiences.</p>
+              </div>
+            </div>
+            <div class="cta" style="margin-top:22px;">
+              <a class="btn btn-primary" href="apply.html">Join Our Studio</a>
+              <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive" target="_blank">See Group</a>
+            </div>
+          </div>
         </div>
-        <div class="feature">
-          <h3>World-Building</h3>
-          <p>Immersive environments that spark imagination and encourage exploration.</p>
-        </div>
-        <div class="feature">
-          <h3>Creative Design</h3>
-          <p>Stunning visuals and intuitive interfaces that enhance gameplay and engagement.</p>
-        </div>
-        <div class="feature">
-          <h3>Innovation & Quality</h3>
-          <p>Bold ideas transformed into unforgettable experiences, emphasizing craftsmanship.</p>
-        </div>
-        <div class="feature">
-          <h3>Player-Focused</h3>
-          <p>Every project is designed with the player in mind, ensuring enjoyable gameplay.</p>
-        </div>
-        <div class="feature">
-          <h3>Dream. Build. Play.</h3>
-          <p>Dream: Creativity first. Build: Ideas become playable worlds. Play: Engaging, rewarding experiences.</p>
-        </div>
-      </div>
-          <div class="cta" style="margin-top:22px;">
-          <a class="btn btn-primary" href="apply.html" style="color: black;">Join Our Studio</a>
-         <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive" target="_blank">See Group</a>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       <!-- Team Section -->
       <section>
         <div class="container">
           <div class="section-card reveal">
             <h2 class="section-title">Our Leaders</h2>
-            <p class="section-lead">People who have contributed to Envix Interactive. Contact them to collaborate!</p>
+            <p class="section-lead">People who have contributed to SpawnPoint Devs. Contact them to collaborate!</p>
             <div class="team-members">
               <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1232798424080842812/873f6ba3e3d939f60d4252e22ba20a28?size=1024" alt="Member Name">
+                <img src="https://cdn.discordapp.com/avatars/1232798424080842812/873f6ba3e3d939f60d4252e22ba20a28?size=1024" alt="Envixity - CEO">
                 <h3>Envixity - CEO</h3>
                 <a href="https://discord.com/users/1232798424080842812" target="_blank">Discord</a>
               </div>
               <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1299151283265077261/7bd33a8d5bab77312383061d9d4f4363?size=1024" alt="Member Name">
+                <img src="https://cdn.discordapp.com/avatars/1299151283265077261/7bd33a8d5bab77312383061d9d4f4363?size=1024" alt="ljracer913 - CFO">
                 <h3>ljracer913 - CFO</h3>
                 <a href="https://discord.com/users/1299151283265077261" target="_blank">Discord</a>
-                </div>
+              </div>
               <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1141269775717240912/763f50fa1ee525e727b56493ec950522?size=1024" alt="Member Name">
+                <img src="https://cdn.discordapp.com/avatars/1141269775717240912/763f50fa1ee525e727b56493ec950522?size=1024" alt="Kairox - CMO">
                 <h3>Kairox - CMO</h3>
                 <a href="https://discord.com/users/1141269775717240912" target="_blank">Discord</a>
-                 </div>
               </div>
             </div>
           </div>
@@ -205,33 +204,31 @@
             <p class="section-lead">Games and systems we're actively working on. Click to view or play!</p>
             <div class="team-members">
               <div class="team-member">
-                <img src="https://tr.rbxcdn.com/180DAY-db54afe34662c054c397e01c6aa6754a/150/150/Image/Webp/noFilter" alt="Project One">
+                <img src="https://tr.rbxcdn.com/180DAY-db54afe34662c054c397e01c6aa6754a/150/150/Image/Webp/noFilter" alt="CORE RNG Project">
                 <h3>CORE RNG</h3>
-                <a>Unreleased</a>
+                <span>Unreleased</span>
               </div>
               <div class="team-member">
-                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="Project Two">
+                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="Guest Invasion Project">
                 <h3>Guest Invasion</h3>
-                <a>Unreleased</a>
+                <span>Unreleased</span>
               </div>
               <div class="team-member">
-                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="Project Three">
+                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="MicroCity Project">
                 <h3>MicroCity</h3>
-               <a>Unreleased</a>
+                <span>Unreleased</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-
     </main>
 
     <footer>
-      <div class="container">© <span id="y"></span> Envix Interactive. Available for commissions and collaborations.</div>
+      <div class="container">© <span id="y"></span> SpawnPoint Devs. Available for commissions and collaborations.</div>
     </footer>
 
     <script>
-      // Reveal animations
       (function(){
         var elements = Array.from(document.querySelectorAll('.reveal'));
         if(!('IntersectionObserver' in window)){ elements.forEach(el=>el.classList.add('is-visible')); return; }
@@ -239,7 +236,6 @@
         elements.forEach(el=>observer.observe(el));
       })();
 
-      // Year
       (function(){ var y=document.getElementById('y'); if(y) y.textContent = new Date().getFullYear(); })();
     </script>
   </body>
