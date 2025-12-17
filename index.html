@@ -1,242 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0B1026" />
-    <meta name="description" content="SpawnPoint Devs — Professional Roblox Developers. High-quality systems, UI, and optimized experiences. Join our community or hire us!" />
-    <title>SpawnPoint Devs — Roblox Development Studio</title>
-
-    <!-- Favicons -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-
-    <style>
-      :root {
-        --primary-gradient: linear-gradient(135deg, #6FE7F0, #6B7CFF, #8A5CFF);
-        --inner-ring: #F4F6FF;
-        --controller-dot: #EDEBFF;
-        --bg-950: #0B1026;
-        --bg-900: #11162E;
-        --text-100: #F4F6FF;
-        --text-300: #EDEBFF;
-        --muted-500: #A0A0C0;
-        --shadow-strong: 0 20px 40px rgba(124,92,255,0.15);
-        --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
-        --radius-xl: 18px;
-        --radius-lg: 14px;
-        --radius-md: 12px;
-        --container: 1200px;
-        --transition-fast: 220ms cubic-bezier(.2,.8,.2,1);
-        --transition-slow: 700ms cubic-bezier(.22,.61,.36,1);
-      }
-
-      * { box-sizing: border-box; }
-      html, body { 
-        height: 100%; margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
-        color: var(--text-100); background: linear-gradient(180deg, var(--bg-950), var(--bg-900));
-        line-height:1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-      }
-
-      body::before {
-        content:""; position:fixed; inset:0;
-        background: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/24px 24px,
-                   linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px) 0 0/24px 24px;
-        mask-image: radial-gradient(80% 60% at 50% 0%, black 35%, transparent 100%);
-        pointer-events:none;
-      }
-
-      .container { width:100%; max-width: var(--container); margin:0 auto; padding:0 20px; }
-
-      /* Hero */
-      .hero { position:relative; padding:96px 0 48px; }
-      .hero-inner { display:grid; gap:28px; justify-items:start; }
-
-      .brand {
-        font-size:clamp(40px,6vw,76px); line-height:1.05; font-weight:800; letter-spacing:-0.02em; margin:0; 
-        background: var(--primary-gradient); background-clip: text; -webkit-background-clip: text; color:transparent; 
-        animation: shimmer 7s ease-in-out infinite; text-shadow:0 0 0 rgba(0,0,0,0.2);
-      }
-
-      .subtitle { margin:4px 0 0 0; font-size:clamp(16px,2.2vw,22px); color:var(--text-300); letter-spacing:0.2px; position:relative; }
-      .accent-underline { display:inline-block; position:relative; padding-bottom:2px;}
-      .accent-underline::after { content:""; position:absolute; left:0; bottom:-6px; height:3px; width:0; border-radius:3px; 
-        background: var(--primary-gradient); 
-        box-shadow:0 0 22px rgba(111,231,240,0.3),0 0 18px rgba(107,124,255,0.2); 
-        animation: underlineGrow var(--transition-slow) 300ms forwards; animation-delay:200ms;
-      }
-
-      .cta { display:flex; gap:14px; flex-wrap:wrap; margin-top:18px; }
-      .btn { appearance:none; border:0; border-radius:999px; padding:12px 20px; font-weight:700; font-size:15px; letter-spacing:0.3px; cursor:pointer; transition:transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:10px;}
-      .btn-primary { background: var(--primary-gradient); color: var(--text-100); box-shadow:0 8px 28px rgba(111,231,240,0.2);}
-      .btn-primary:hover { transform:translateY(-2px); box-shadow:0 14px 36px rgba(124,92,255,0.3),0 0 0 6px rgba(124,92,255,0.1);}
-      .btn-secondary { color: var(--text-100); background: rgba(244,246,255,0.06); border:1px solid rgba(244,246,255,0.1); box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(244,246,255,0.06); backdrop-filter: blur(6px);}
-      .btn-secondary:hover { transform:translateY(-2px); border-color: rgba(244,246,255,0.18); box-shadow:0 14px 36px rgba(0,0,0,0.45),0 0 0 6px rgba(124,92,255,0.1); }
-
-      .stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:24px; width:100%; }
-      .stat { background: linear-gradient(180deg, rgba(111,231,240,0.05), rgba(107,124,255,0.03)); border:1px solid rgba(244,246,255,0.08); border-radius: var(--radius-xl); padding:20px 18px; box-shadow: var(--shadow-soft); transition:transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);}
-      .stat:hover { transform:translateY(-4px); border-color: rgba(244,246,255,0.16); box-shadow:0 16px 40px rgba(0,0,0,0.5);}
-      .stat-value { font-size:clamp(24px,4vw,34px); font-weight:800; letter-spacing:-0.02em; }
-      .stat-label { color:var(--muted-500); font-size:14px; margin-top:6px; }
-
-      section { padding:48px 0 80px; }
-      .section-card, .feature, .team-member { 
-        background: linear-gradient(180deg, rgba(111,231,240,0.05), rgba(107,124,255,0.03)); 
-        border:1px solid rgba(244,246,255,0.08); border-radius: var(--radius-xl); box-shadow: var(--shadow-soft); padding:28px;
-      }
-      .section-title { font-size:clamp(22px,3vw,28px); margin:0 0 14px 0; font-weight:800; }
-      .section-lead { color: var(--text-300); margin:0 0 18px 0; }
-
-      .features, .team-members { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:10px;}
-      .feature:hover, .team-member:hover { transform:translateY(-3px); border-color: rgba(244,246,255,0.16); }
-
-      .team-member img { width:100px; height:100px; border-radius:50%; object-fit:cover; margin-bottom:10px; border:2px solid rgba(244,246,255,0.08);}
-      .team-member h3 { margin:4px 0 6px 0; font-size:16px; color: var(--text-100);}
-      .team-member a { color: var(--primary-gradient); text-decoration:none; font-size:14px;}
-      .team-member a:hover { text-decoration: underline;}
-
-      footer { padding:28px 0 54px; color: var(--text-300); text-align:center; font-size:14px; }
-
-      .reveal { opacity:0; transform:translateY(14px) scale(.98); transition:opacity 700ms ease, transform 700ms ease; }
-      .reveal.is-visible { opacity:1; transform:translateY(0) scale(1); }
-
-      @keyframes shimmer { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-      @keyframes underlineGrow { from{width:0;opacity:.2;} to{width:100%;opacity:1;} }
-
-      @media(max-width:900px){ .features, .team-members{grid-template-columns:repeat(2,minmax(0,1fr));} .stats{grid-template-columns:repeat(2,minmax(0,1fr));} }
-      @media(max-width:620px){ .features, .team-members{grid-template-columns:1fr;} .stats{grid-template-columns:1fr;} .hero{padding-top:72px;} }
-    </style>
-  </head>
-
-  <body>
-    <header class="hero">
-      <div class="container hero-inner">
-        <h1 class="brand">SpawnPoint Devs</h1>
-        <p class="subtitle"><span class="accent-underline">"Dream. Build. Play"</span></p>
-
-        <div class="cta">
-          <a class="btn btn-primary" href="apply.html" target="_blank">Join Discord</a>
-          <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive" target="_blank">View Group</a>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>SpawnPoint Devs</title>
+    <meta name="description" content="SpawnPoint Devs – Where game ideas come to life. Join our dev community and explore top Roblox games."/>
+    <meta property="og:title" content="SpawnPoint Devs"/>
+    <meta property="og:description" content="SpawnPoint Devs – Where game ideas come to life. Join our dev community and explore top Roblox games."/>
+    <meta property="og:image" content="https://yourdomain.com/icon.png"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="SpawnPoint Devs"/>
+    <meta name="twitter:description" content="SpawnPoint Devs – Where game ideas come to life. Join our dev community and explore top Roblox games."/>
+    <meta name="twitter:image" content="https://yourdomain.com/icon.png"/>
+    <link rel="icon" href="/icon.png" type="image/png"/>
+    <link rel="stylesheet" href="/_next/static/css/e141bdd4d0bcc769.css" data-precedence="next"/>
+</head>
+<body class="__className_4f1194 bg-[#0B1026] text-white">
+    <!-- Navbar -->
+    <div class="navbar py-4 bg-[#0B1026]">
+        <div class="navbar-start">
+            <a href="/" class="btn btn-ghost text-xl flex items-center gap-x-3">
+                <img src="/_next/image?url=%2Ficon.png&amp;w=128&amp;q=75" alt="logo" class="w-[50px] h-auto rounded-lg"/>
+                SpawnPoint Devs
+            </a>
         </div>
-
-        <div class="stats">
-          <div class="stat reveal"><div class="stat-value">10+</div><div class="stat-label">Projects Completed</div></div>
-          <div class="stat reveal"><div class="stat-value">High</div><div class="stat-label">Quality Projects</div></div>
-          <div class="stat reveal"><div class="stat-value">Strong</div><div class="stat-label">Community Collaboration</div></div>
+        <div class="navbar-end hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 lg:text-xl gap-x-6">
+                <li><a href="/">Home</a></li>
+                <li><a href="/games">Our Games</a></li>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/#game-acquisition">Game Acquisitions</a></li>
+            </ul>
         </div>
-      </div>
-    </header>
+    </div>
 
-    <main>
-      <!-- What We Build -->
-      <section>
-        <div class="container">
-          <div class="section-card reveal">
-            <h2 class="section-title">What We Build</h2>
-            <p class="section-lead">SpawnPoint Devs is an innovative Roblox game studio crafting immersive and engaging experiences. We turn creative ideas into interactive adventures that inspire, entertain, and captivate players worldwide.</p>
-            <div class="features">
-              <div class="feature">
-                <h3>Game Development</h3>
-                <p>Polished, memorable, and fun experiences designed to delight players.</p>
-              </div>
-              <div class="feature">
-                <h3>World-Building</h3>
-                <p>Immersive environments that spark imagination and encourage exploration.</p>
-              </div>
-              <div class="feature">
-                <h3>Creative Design</h3>
-                <p>Stunning visuals and intuitive interfaces that enhance gameplay and engagement.</p>
-              </div>
-              <div class="feature">
-                <h3>Innovation & Quality</h3>
-                <p>Bold ideas transformed into unforgettable experiences, emphasizing craftsmanship.</p>
-              </div>
-              <div class="feature">
-                <h3>Player-Focused</h3>
-                <p>Every project is designed with the player in mind, ensuring enjoyable gameplay.</p>
-              </div>
-              <div class="feature">
-                <h3>Dream. Build. Play.</h3>
-                <p>Dream: Creativity first. Build: Ideas become playable worlds. Play: Engaging, rewarding experiences.</p>
-              </div>
+    <!-- Hero Section -->
+    <main class="bg-center bg-cover" style="background-image:url(/bg.png);">
+        <div class="bg-black/30 py-16">
+            <div class="container mx-auto flex flex-col items-center text-center">
+                <img src="/_next/image?url=%2Ficon.png&amp;w=256&amp;q=75" alt="logo" class="w-[80px] h-auto rounded-xl mb-4"/>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4">SpawnPoint Devs</h1>
+                <p class="text-xl md:text-2xl mb-6">Your gateway to top Roblox games & dev community.</p>
+                <div class="flex flex-col md:flex-row gap-4">
+                    <a href="/games" class="bg-gradient-to-br from-[#6FE7F0] via-[#6B7CFF] to-[#8A5CFF] text-black font-bold px-6 py-3 rounded-lg shadow-lg transition-all hover:scale-105">Explore Games</a>
+                    <a href="/#contact-form" class="bg-white text-black font-semibold px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 transition-all hover:scale-105">
+                        Talk to us
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="w-5 h-5">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="cta" style="margin-top:22px;">
-              <a class="btn btn-primary" href="apply.html">Join Our Studio</a>
-              <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive" target="_blank">See Group</a>
-            </div>
-          </div>
         </div>
-      </section>
-
-      <!-- Team Section -->
-      <section>
-        <div class="container">
-          <div class="section-card reveal">
-            <h2 class="section-title">Our Leaders</h2>
-            <p class="section-lead">People who have contributed to SpawnPoint Devs. Contact them to collaborate!</p>
-            <div class="team-members">
-              <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1232798424080842812/873f6ba3e3d939f60d4252e22ba20a28?size=1024" alt="Envixity - CEO">
-                <h3>Envixity - CEO</h3>
-                <a href="https://discord.com/users/1232798424080842812" target="_blank">Discord</a>
-              </div>
-              <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1299151283265077261/7bd33a8d5bab77312383061d9d4f4363?size=1024" alt="ljracer913 - CFO">
-                <h3>ljracer913 - CFO</h3>
-                <a href="https://discord.com/users/1299151283265077261" target="_blank">Discord</a>
-              </div>
-              <div class="team-member">
-                <img src="https://cdn.discordapp.com/avatars/1141269775717240912/763f50fa1ee525e727b56493ec950522?size=1024" alt="Kairox - CMO">
-                <h3>Kairox - CMO</h3>
-                <a href="https://discord.com/users/1141269775717240912" target="_blank">Discord</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Current Projects Section -->
-      <section>
-        <div class="container">
-          <div class="section-card reveal">
-            <h2 class="section-title">Current Projects</h2>
-            <p class="section-lead">Games and systems we're actively working on. Click to view or play!</p>
-            <div class="team-members">
-              <div class="team-member">
-                <img src="https://tr.rbxcdn.com/180DAY-db54afe34662c054c397e01c6aa6754a/150/150/Image/Webp/noFilter" alt="CORE RNG Project">
-                <h3>CORE RNG</h3>
-                <span>Unreleased</span>
-              </div>
-              <div class="team-member">
-                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="Guest Invasion Project">
-                <h3>Guest Invasion</h3>
-                <span>Unreleased</span>
-              </div>
-              <div class="team-member">
-                <img src="https://www.allworship.com/wp-content/uploads/2023/08/bigstock-Work-In-Progress-Concept-73569091-768x699.jpg" alt="MicroCity Project">
-                <h3>MicroCity</h3>
-                <span>Unreleased</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <footer>
-      <div class="container">© <span id="y"></span> SpawnPoint Devs. Available for commissions and collaborations.</div>
+    <!-- Top Hits -->
+    <section class="container mx-auto py-16 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">Our Top Hits</h2>
+        <p class="text-lg md:text-xl mb-8">Some of the best games developed by SpawnPoint Devs</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <!-- Example game cards -->
+            <div class="bg-[#11162E] p-4 rounded-xl shadow hover:scale-105 transition-all">Game 1</div>
+            <div class="bg-[#11162E] p-4 rounded-xl shadow hover:scale-105 transition-all">Game 2</div>
+            <div class="bg-[#11162E] p-4 rounded-xl shadow hover:scale-105 transition-all">Game 3</div>
+            <div class="bg-[#11162E] p-4 rounded-xl shadow hover:scale-105 transition-all">Game 4</div>
+            <div class="bg-[#11162E] p-4 rounded-xl shadow hover:scale-105 transition-all">Game 5</div>
+        </div>
+        <a href="/games" class="mt-8 inline-block bg-gradient-to-br from-[#6FE7F0] via-[#6B7CFF] to-[#8A5CFF] text-black font-bold px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-all">View all games</a>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="container mx-auto py-16 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">About Us</h2>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto">SpawnPoint Devs creates top Roblox games, building a passionate dev community. Our games reach millions of players worldwide, combining fun, innovation, and tech-forward design.</p>
+    </section>
+
+    <!-- Game Acquisition -->
+    <section id="game-acquisition" class="container mx-auto py-16 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">Game Acquisition</h2>
+        <p class="text-lg md:text-xl max-w-xl mx-auto mb-8">Ready to unlock the full potential of your Roblox creation? SpawnPoint Devs offers a seamless exit strategy for game developers.</p>
+        <div class="max-w-2xl mx-auto text-left space-y-6">
+            <div>
+                <b class="text-2xl">Full Game Acquisition</b><br/>
+                We purchase your Roblox game outright, offering competitive upfront payment.
+            </div>
+            <div>
+                <b class="text-2xl">Expert Development & Marketing</b><br/>
+                Our team ensures your game thrives with ongoing optimization and promotion.
+            </div>
+            <div>
+                <b class="text-2xl">Revenue Sharing</b><br/>
+                Benefit from continued revenue via a transparent revenue-sharing model.
+            </div>
+            <div>
+                <b class="text-2xl">Hassle-Free Transition</b><br/>
+                Sit back and relax! We handle everything from sale to future management.
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact-form" class="container mx-auto py-16 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-4">🤝 Let's get started</h2>
+        <p class="text-lg md:text-xl mb-8">Send us a message with your game link and metrics</p>
+        <form class="flex flex-col gap-4 max-w-xl mx-auto">
+            <input type="email" placeholder="Email Address..." class="p-4 rounded-lg shadow"/>
+            <textarea placeholder="Your message..." class="p-4 rounded-lg shadow"></textarea>
+            <div class="flex items-center justify-center gap-2">
+                <input type="checkbox"/>
+                <span>I confirm that I am over 13 years old</span>
+            </div>
+            <button type="submit" class="bg-gradient-to-br from-[#6FE7F0] via-[#6B7CFF] to-[#8A5CFF] text-black font-bold px-6 py-3 rounded-lg shadow-lg hover:scale-105 transition-all">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0B1026] py-12 text-center text-white">
+        <h3 class="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
+            <img src="/_next/image?url=%2Ficon.png&amp;w=128&amp;q=75" class="w-[50px] h-auto rounded-lg"/> SpawnPoint Devs
+        </h3>
+        <div class="flex flex-col md:flex-row justify-center gap-8 mb-4">
+            <a href="/#game-acquisition" class="hover:underline">Game Acquisition</a>
+            <a href="#about" class="hover:underline">About Us</a>
+            <a href="/privacy-policy.pdf" class="hover:underline">Privacy Policy</a>
+        </div>
+        <p>© 2025 SpawnPoint Devs. All rights reserved.</p>
     </footer>
-
-    <script>
-      (function(){
-        var elements = Array.from(document.querySelectorAll('.reveal'));
-        if(!('IntersectionObserver' in window)){ elements.forEach(el=>el.classList.add('is-visible')); return; }
-        var observer = new IntersectionObserver(function(entries){ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } }); }, {threshold:0.12});
-        elements.forEach(el=>observer.observe(el));
-      })();
-
-      (function(){ var y=document.getElementById('y'); if(y) y.textContent = new Date().getFullYear(); })();
-    </script>
-  </body>
+</body>
 </html>
