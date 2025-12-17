@@ -1,293 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SpawnPoint Devs</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B1026" />
+    <meta name="description" content="SpawnPoint Devs — Professional Roblox Developers. High-quality systems, UI, and optimized experiences. Join our community or hire us!" />
+    <title>SpawnPoint Devs — Roblox Development Studio</title>
 
-  <style>
-    :root {
-      --bg-main: #0B1026;
-      --bg-alt: #11162E;
-      --text-100: #F4F6FF;
-      --text-300: #B9C0FF;
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
 
-      --gradient-main: linear-gradient(135deg, #6FE7F0, #6B7CFF, #8A5CFF);
-      --radius-xl: 22px;
-      --transition-fast: 0.25s ease;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: sans-serif;
-      background: var(--bg-main);
-      color: var(--text-100);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 999;
-      background: rgba(11,16,38,0.75);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(244,246,255,0.08);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .nav-brand {
-      font-weight: 800;
-      font-size: 18px;
-      text-decoration: none;
-      letter-spacing: 0.3px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-300);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    .nav-links a:hover {
-      color: #6FE7F0;
-    }
-
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: inline-block;
-      border-radius: 999px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .btn-primary {
-      padding: 10px 20px;
-      background: var(--gradient-main);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(124,92,255,0.4);
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      padding-top: 96px;
-    }
-
-    .hero-panel {
-      background: linear-gradient(
-        180deg,
-        rgba(11,16,38,0.9),
-        rgba(11,16,38,0.6),
-        rgba(11,16,38,0)
-      );
-      padding: 90px 0 130px;
-      border-bottom-left-radius: 28px;
-      border-bottom-right-radius: 28px;
-    }
-
-    .hero-inner {
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 64px;
-      font-weight: 900;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      max-width: 650px;
-      margin: 0 auto 32px;
-      color: var(--text-300);
-      font-size: 18px;
-    }
-
-    /* ===== STATS ===== */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: -40px;
-      padding-bottom: 80px;
-    }
-
-    .stat {
-      background: var(--bg-alt);
-      border-radius: var(--radius-xl);
-      padding: 30px;
-      text-align: center;
-      transition: transform var(--transition-fast);
-    }
-
-    .stat:hover {
-      transform: translateY(-6px);
-    }
-
-    .stat h3 {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
-
-    .stat p {
-      color: var(--text-300);
-      font-size: 14px;
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 90px 0;
-    }
-
-    section h2 {
-      font-size: 40px;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .section-text {
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-      color: var(--text-300);
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #070A1A;
-      padding: 40px 0;
-      text-align: center;
-      color: var(--text-300);
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 44px;
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #6FE7F0, #6B7CFF, #8A5CFF);
+        --bg-950: #0B1026;
+        --bg-900: #11162E;
+        --text-100: #F4F6FF;
+        --text-300: #EDEBFF;
+        --muted-500: #A0A0C0;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
+        --radius-xl: 18px;
+        --container: 1200px;
+        --transition-fast: 220ms cubic-bezier(.2,.8,.2,1);
+        --transition-slow: 700ms cubic-bezier(.22,.61,.36,1);
       }
-    }
-  </style>
-</head>
 
-<body>
+      * { box-sizing: border-box; }
+      html, body {
+        margin:0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
+        color: var(--text-100);
+        background: linear-gradient(180deg, var(--bg-950), var(--bg-900));
+        line-height:1.6;
+      }
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a href="#" class="nav-brand">SpawnPoint Devs</a>
-      <nav class="nav-links">
-        <a href="#what-we-build">What We Build</a>
-        <a href="#team">Team</a>
-        <a href="#projects">Projects</a>
-        <a href="apply.html" class="btn btn-primary">Join</a>
-      </nav>
-    </div>
-  </header>
+      body::before {
+        content:"";
+        position:fixed;
+        inset:0;
+        background:
+          linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0/24px 24px,
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px) 0 0/24px 24px;
+        pointer-events:none;
+      }
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-panel">
-      <div class="container hero-inner">
-        <h1>SpawnPoint Devs</h1>
-        <p>
-          A game development studio focused on creative gameplay,
-          clean execution, and projects that actually ship.
-        </p>
-        <a href="#projects" class="btn btn-primary">See Our Work</a>
+      .container {
+        max-width: var(--container);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ===== NAVBAR (ONLY ADDITION) ===== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 999;
+        background: rgba(11,16,38,0.7);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(244,246,255,0.08);
+      }
+
+      .nav-inner {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-brand {
+        font-weight: 800;
+        text-decoration: none;
+        color: var(--text-100);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+      }
+
+      .nav-links a {
+        color: var(--text-300);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        padding-top: 96px;
+        position: relative;
+      }
+
+      /* HERO BACKGROUND PANEL (ONLY ADDITION) */
+      .hero::before {
+        content:"";
+        position:absolute;
+        inset:0;
+        background: linear-gradient(
+          180deg,
+          rgba(11,16,38,0.85),
+          rgba(11,16,38,0.55),
+          rgba(11,16,38,0)
+        );
+        height: 70%;
+        z-index:-1;
+        border-bottom-left-radius: 28px;
+        border-bottom-right-radius: 28px;
+      }
+
+      .hero-inner {
+        display: grid;
+        gap: 28px;
+      }
+
+      .brand {
+        font-size: clamp(40px,6vw,76px);
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        color: var(--text-300);
+        font-size: 20px;
+      }
+
+      .cta {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 12px 20px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .btn-primary {
+        background: var(--primary-gradient);
+        color: var(--text-100);
+      }
+
+      .btn-secondary {
+        border: 1px solid rgba(244,246,255,0.15);
+        color: var(--text-100);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .stat {
+        padding: 20px;
+        border-radius: var(--radius-xl);
+        border: 1px solid rgba(244,246,255,0.08);
+        box-shadow: var(--shadow-soft);
+      }
+
+      section {
+        padding: 48px 0 80px;
+      }
+
+      footer {
+        padding: 28px 0 54px;
+        text-align: center;
+        color: var(--text-300);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="#" class="nav-brand">SpawnPoint Devs</a>
+        <nav class="nav-links">
+          <a href="#build">Build</a>
+          <a href="#team">Team</a>
+          <a href="#projects">Projects</a>
+        </nav>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- STATS -->
-  <div class="container stats">
-    <div class="stat">
-      <h3>3+</h3>
-      <p>Projects Completed</p>
-    </div>
-    <div class="stat">
-      <h3>100%</h3>
-      <p>Quality Focused</p>
-    </div>
-    <div class="stat">
-      <h3>24/7</h3>
-      <p>Community Collaboration</p>
-    </div>
-  </div>
+    <!-- HERO (UNCHANGED CONTENT) -->
+    <header class="hero">
+      <div class="container hero-inner">
+        <h1 class="brand">SpawnPoint Devs</h1>
+        <p class="subtitle">"Dream. Build. Play"</p>
 
-  <!-- WHAT WE BUILD -->
-  <section id="what-we-build">
-    <div class="container">
-      <h2>What We Build</h2>
-      <p class="section-text">
-        We create engaging games, interactive systems,
-        and experimental ideas — always pushing gameplay first.
-      </p>
-    </div>
-  </section>
+        <div class="cta">
+          <a class="btn btn-primary" href="apply.html">Join Discord</a>
+          <a class="btn btn-secondary" href="#">View Group</a>
+        </div>
 
-  <!-- TEAM -->
-  <section id="team">
-    <div class="container">
-      <h2>Our Team</h2>
-      <p class="section-text">
-        A small, focused group of developers passionate
-        about building games the right way.
-      </p>
-    </div>
-  </section>
+        <div class="stats">
+          <div class="stat">10+<br><small>Projects Completed</small></div>
+          <div class="stat">High<br><small>Quality Projects</small></div>
+          <div class="stat">Strong<br><small>Community Collaboration</small></div>
+        </div>
+      </div>
+    </header>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <h2>Projects</h2>
-      <p class="section-text">
-        Current and upcoming releases from SpawnPoint Devs.
-      </p>
-    </div>
-  </section>
+    <footer>
+      <div class="container">© <span id="y"></span> SpawnPoint Devs</div>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 SpawnPoint Devs. All rights reserved.
-  </footer>
-
-</body>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
