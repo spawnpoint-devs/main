@@ -29,11 +29,11 @@
 
       * { box-sizing: border-box; }
       html, body {
-        margin:0;
+        margin: 0;
         font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
         color: var(--text-100);
         background: linear-gradient(180deg, var(--bg-950), var(--bg-900));
-        line-height:1.6;
+        line-height: 1.6;
       }
 
       body::before {
@@ -52,13 +52,13 @@
         padding: 0 20px;
       }
 
-      /* ===== NAVBAR (ONLY ADDITION) ===== */
+      /* ================= NAVBAR (ADD ONLY) ================= */
       .navbar {
         position: fixed;
         top: 0;
         width: 100%;
-        z-index: 999;
-        background: rgba(11,16,38,0.7);
+        z-index: 1000;
+        background: rgba(11,16,38,0.75);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(244,246,255,0.08);
       }
@@ -72,43 +72,48 @@
 
       .nav-brand {
         font-weight: 800;
-        text-decoration: none;
+        font-size: 16px;
         color: var(--text-100);
+        text-decoration: none;
       }
 
       .nav-links {
         display: flex;
         gap: 18px;
+        align-items: center;
       }
 
       .nav-links a {
+        font-size: 14px;
+        font-weight: 600;
         color: var(--text-300);
         text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
       }
 
-      /* ===== HERO ===== */
+      .nav-links a:hover {
+        color: #6FE7F0;
+      }
+
+      /* ================= HERO (OG + BACKGROUND) ================= */
       .hero {
-        padding-top: 96px;
         position: relative;
+        padding: 160px 0 48px; /* only offset for navbar */
       }
 
-      /* HERO BACKGROUND PANEL (ONLY ADDITION) */
       .hero::before {
         content:"";
         position:absolute;
         inset:0;
+        height:65%;
         background: linear-gradient(
           180deg,
           rgba(11,16,38,0.85),
-          rgba(11,16,38,0.55),
+          rgba(11,16,38,0.6),
           rgba(11,16,38,0)
         );
-        height: 70%;
-        z-index:-1;
         border-bottom-left-radius: 28px;
         border-bottom-right-radius: 28px;
+        z-index:-1;
       }
 
       .hero-inner {
@@ -125,8 +130,8 @@
       }
 
       .subtitle {
-        color: var(--text-300);
         font-size: 20px;
+        color: var(--text-300);
       }
 
       .cta {
@@ -186,9 +191,9 @@
       <div class="container nav-inner">
         <a href="#" class="nav-brand">SpawnPoint Devs</a>
         <nav class="nav-links">
-          <a href="#build">Build</a>
-          <a href="#team">Team</a>
-          <a href="#projects">Projects</a>
+          <a href="#">What We Build</a>
+          <a href="#">Team</a>
+          <a href="#">Projects</a>
         </nav>
       </div>
     </header>
@@ -201,7 +206,7 @@
 
         <div class="cta">
           <a class="btn btn-primary" href="apply.html">Join Discord</a>
-          <a class="btn btn-secondary" href="#">View Group</a>
+          <a class="btn btn-secondary" href="https://www.roblox.com/communities/15678395/Envix-Interactive">View Group</a>
         </div>
 
         <div class="stats">
